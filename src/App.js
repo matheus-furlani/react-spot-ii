@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import React, { useState } from 'react';
+import AddFilter from './components/AddFilter';
+import FilterList from './components/FilterList';
+import Render from './components/Render';
 
 function App() {
+  const [filters, setFilters] = useState([]);
+  const [render, setRender] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AddFilter setFilters={setFilters} />
+      <FilterList filters={filters} setFilters={setFilters} />
+      <button onClick={() => setRender((bananinha) => !bananinha)}>Renderize</button>
+      {render ? <Render /> : ''}
+    </>
   );
 }
 
